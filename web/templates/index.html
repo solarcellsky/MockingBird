@@ -94,7 +94,7 @@
 						音频预览</div>
 				</div>
 			</div> -->
-			<div class="reclog" style="margin-left: 5%;margin-top: 20px;width: 90%;"></div>
+			<div class="reclog"></div>
 		</div>
 	</div>
 
@@ -354,7 +354,7 @@
 			var div = document.createElement("div");
 			var elem = document.querySelector(".reclog");
 			elem.insertBefore(div, elem.firstChild);
-			div.innerHTML = '<div style="color:' + (!color ? "" : color == 1 ? "#327de8" : color == 2 ? "#5da1f5" : color) + '">[' + t + ']' + s + '</div>';
+			div.innerHTML = '<div class="logItem" style="color:' + (!color ? "" : color == 1 ? "#327de8" : color == 2 ? "#5da1f5" : color) + '">' + t + ' ==> ' + s + '</div>';
 		};
 		window.onerror = function (message, url, lineNo, columnNo, error) {
 			reclog('<span style="color:red">【Uncaught Error】' + message + '<pre>' + "at:" + lineNo + ":" + columnNo + " url:" + url + "\n" + (error && error.stack || "不能获得错误堆栈") + '</pre></span>');
@@ -377,10 +377,30 @@
 
 
 	<style>
+		::-webkit-scrollbar-track
+		{
+			-webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0.3);
+			border-radius: 10px;
+			background-color: #F5F5F5;
+		}
+
+		::-webkit-scrollbar
+		{
+			width: 12px;
+			background-color: #F5F5F5;
+		}
+
+		::-webkit-scrollbar-thumb
+		{
+			border-radius: 10px;
+			-webkit-box-shadow: inset 0 0 6px rgba(0,0,0,.3);
+			background-color: #555;
+		}
 		body {
 			word-wrap: break-word;
 			background: #f5f5f5 center top no-repeat;
 			background-size: auto 680px;
+			font-family: Chinese Quote,-apple-system,BlinkMacSystemFont,Segoe UI,PingFang SC,Hiragino Sans GB,Microsoft YaHei,Helvetica Neue,Helvetica,Arial,sans-serif,Apple Color Emoji,Segoe UI Emoji,Segoe UI Symbol;
 		}
 
 		pre {
@@ -407,7 +427,7 @@
 			padding: 12px;
 			border-radius: 6px;
 			background: #fff;
-			box-shadow: 2px 2px 3px #aaa;
+			border: 1px solid #e0e0e0;
 		}
 
 
@@ -416,7 +436,7 @@
 			cursor: pointer;
 			border: none;
 			border-radius: 3px;
-			background: #5698c3;
+			background: #409EFF;
 			color: #fff;
 			padding: 0 15px;
 			margin: 3px 10px 3px 0;
@@ -428,7 +448,7 @@
 		}
 
 		.btns #upload {
-			background: #5698c3;
+			background: #409EFF;
 			color: #fff;
 			width: 100px;
 			height: 42px;
@@ -467,7 +487,7 @@
 			padding: 0 15px;
 			border-radius: 4px;
 			color: white;
-			background-color: #5698c3;
+			background-color: #f56c6c;
 			display: inline-block;
 			width: 70px;
 			line-height: 36px;
@@ -482,15 +502,17 @@
 		}
 
 		.box select {
-			background-color: #5698c3;
+			background-color: #ffffff;
 			color: white;
-			padding: 8px;
-			width: 120px;
+			padding: 8px 18px 8px 8px;
+			width: 260px;
 			border: none;
 			border-radius: 4px;
-			font-size: 0.5em;
+			font-size: 0.8em;
 			outline: none;
-			margin: 3px 10px 3px 0;
+			margin: 5px auto;
+			color: #000;
+			border: 1px solid #e0e0e0;
 		}
 
 		.box::before {
@@ -514,7 +536,19 @@
 		}
 
 		.box select option {
-			padding: 30px;
+			padding: 30px 40px 30px 30px;
+		}
+
+		.reclog {
+			margin: 20px 5%;
+			font-size: 14px;
+			max-height: 260px;
+			overflow: auto;
+		}
+
+		.logItem {
+			border-bottom: 1px solid #eee;
+			padding: 5px 0;
 		}
 	</style>
 
